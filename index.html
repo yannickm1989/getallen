@@ -14,6 +14,7 @@
             background-color: #f2f2f2;
         }
 
+        /* Invoervelden bovenaan */
         .top {
             display: flex;
             justify-content: space-around;
@@ -29,6 +30,7 @@
             border: 2px solid #ccc;
         }
 
+        /* Slider voor getalgrootte */
         .slider-container {
             text-align: center;
             margin-bottom: 10px;
@@ -40,15 +42,21 @@
             margin-bottom: 4px;
         }
 
+        input[type=range] {
+            width: 80%;
+        }
+
+        /* Groot getal in het midden */
         .number-box {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 260px; /* startwaarde */
+            font-size: clamp(120px, 20vw, 300px); /* past zich aan scherm aan */
             font-weight: bold;
         }
 
+        /* Knop onderaan */
         .button {
             background-color: #4CAF50;
             color: white;
@@ -64,19 +72,14 @@
             background-color: #3e8e41;
         }
 
-        /* Maak slider mobiel-vriendelijk */
-        input[type=range] {
-            width: 80%;
-        }
-
     </style>
 </head>
 <body>
 
     <!-- Invoervelden -->
     <div class="top">
-        <input type="number" id="minInput" placeholder="Minimum">
-        <input type="number" id="maxInput" placeholder="Maximum">
+        <input type="tel" id="minInput" placeholder="Minimum">
+        <input type="tel" id="maxInput" placeholder="Maximum">
     </div>
 
     <!-- Slider voor lettergrootte -->
