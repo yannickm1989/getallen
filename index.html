@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
@@ -17,16 +17,27 @@
         .top {
             display: flex;
             justify-content: space-around;
-            padding: 20px;
+            padding: 15px 10px 5px 10px;
         }
 
         input {
             width: 40%;
-            padding: 15px;
-            font-size: 20px;
+            padding: 12px;
+            font-size: 18px;
             text-align: center;
             border-radius: 10px;
             border: 2px solid #ccc;
+        }
+
+        .slider-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .slider-container label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
         }
 
         .number-box {
@@ -34,7 +45,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 260px;
+            font-size: 260px; /* startwaarde */
             font-weight: bold;
         }
 
@@ -52,37 +63,52 @@
         .button:active {
             background-color: #3e8e41;
         }
+
+        /* Maak slider mobiel-vriendelijk */
+        input[type=range] {
+            width: 80%;
+        }
+
     </style>
 </head>
 <body>
 
+    <!-- Invoervelden -->
     <div class="top">
         <input type="number" id="minInput" placeholder="Minimum">
         <input type="number" id="maxInput" placeholder="Maximum">
     </div>
 
+    <!-- Slider voor lettergrootte -->
+    <div class="slider-container">
+        <label for="sizeSlider">Grootte getal</label>
+        <input type="range" id="sizeSlider" min="80" max="400" value="260">
+    </div>
+
+    <!-- Groot getal -->
     <div class="number-box" id="number">?</div>
 
+    <!-- Knop -->
     <div class="button" onclick="generateNumber()">MAAK GETAL</div>
 
     <script>
-        function extractNumber(text) {
-            const match = text.match(/\d+/);
-            return match ? parseInt(match[0]) : null;
-        }
+        const numberBox = document.getElementById('number');
+        const sizeSlider = document.getElementById('sizeSlider');
+
+        // Slider werkt realtime
+        sizeSlider.addEventListener('input', () => {
+            numberBox.style.fontSize = sizeSlider.value + 'px';
+        });
 
         function generateNumber() {
-            const minText = document.getElementById('minInput').value;
-            const maxText = document.getElementById('maxInput').value;
+            const min = parseInt(document.getElementById('minInput').value);
+            const max = parseInt(document.getElementById('maxInput').value);
 
-            const min = extractNumber(minText);
-            const max = extractNumber(maxText);
-
-            if (min !== null && max !== null && max > min) {
+            if (!isNaN(min) && !isNaN(max) && max > min) {
                 const random = Math.floor(Math.random() * (max - min + 1)) + min;
-                document.getElementById('number').innerText = random;
+                numberBox.innerText = random;
             } else {
-                document.getElementById('number').innerText = "!";
+                numberBox.innerText = "!";
             }
         }
     </script>
