@@ -57,8 +57,8 @@
 <body>
 
     <div class="top">
-        <input type="number" id="min" placeholder="Minimum">
-        <input type="number" id="max" placeholder="Maximum">
+        <input type="text" id="minInput" placeholder="Minimum (vrije tekst)">
+        <input type="text" id="maxInput" placeholder="Maximum (vrije tekst)">
     </div>
 
     <div class="number-box" id="number">?</div>
@@ -66,11 +66,19 @@
     <div class="button" onclick="generateNumber()">GENEREER GETAL</div>
 
     <script>
-        function generateNumber() {
-            const min = parseInt(document.getElementById('min').value);
-            const max = parseInt(document.getElementById('max').value);
+        function extractNumber(text) {
+            const match = text.match(/\d+/);
+            return match ? parseInt(match[0]) : null;
+        }
 
-            if (!isNaN(min) && !isNaN(max) && max > min) {
+        function generateNumber() {
+            const minText = document.getElementById('minInput').value;
+            const maxText = document.getElementById('maxInput').value;
+
+            const min = extractNumber(minText);
+            const max = extractNumber(maxText);
+
+            if (min !== null && max !== null && max > min) {
                 const random = Math.floor(Math.random() * (max - min + 1)) + min;
                 document.getElementById('number').innerText = random;
             } else {
