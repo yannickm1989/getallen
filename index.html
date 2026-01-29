@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getallen App</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        input {
+            width: 40%;
+            padding: 15px;
+            font-size: 20px;
+            text-align: center;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+        }
+
+        .number-box {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 120px;
+            font-weight: bold;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .button:active {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top">
+        <input type="number" id="min" placeholder="Minimum">
+        <input type="number" id="max" placeholder="Maximum">
+    </div>
+
+    <div class="number-box" id="number">?</div>
+
+    <div class="button" onclick="generateNumber()">GENEREER GETAL</div>
+
+    <script>
+        function generateNumber() {
+            const min = parseInt(document.getElementById('min').value);
+            const max = parseInt(document.getElementById('max').value);
+
+            if (!isNaN(min) && !isNaN(max) && max > min) {
+                const random = Math.floor(Math.random() * (max - min + 1)) + min;
+                document.getElementById('number').innerText = random;
+            } else {
+                document.getElementById('number').innerText = "!";
+            }
+        }
+    </script>
+
+</body>
+</html>
