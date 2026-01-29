@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,12 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Comic Sans MS", cursive, sans-serif;
             display: flex;
             flex-direction: column;
             height: 100vh;
-            background-color: #f2f2f2;
+            background: linear-gradient(135deg, #FFD6A5, #FFADAD, #CAFFBF);
+            color: #333;
         }
 
         /* Invoervelden bovenaan */
@@ -23,11 +24,13 @@
 
         input {
             width: 40%;
-            padding: 12px;
+            padding: 14px;
             font-size: 18px;
             text-align: center;
-            border-radius: 10px;
-            border: 2px solid #ccc;
+            border-radius: 25px;
+            border: 2px solid #fff;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            background-color: #fff;
         }
 
         /* Slider voor getalgrootte */
@@ -44,6 +47,7 @@
 
         input[type=range] {
             width: 80%;
+            accent-color: #FF6B6B;
         }
 
         /* Groot getal in het midden */
@@ -52,24 +56,31 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: clamp(120px, 20vw, 300px); /* past zich aan scherm aan */
+            font-size: clamp(120px, 20vw, 300px);
             font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            color: #FF6B6B;
         }
 
         /* Knop onderaan */
         .button {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #FFD93D;
+            color: #333;
             text-align: center;
             padding: 25px;
             font-size: 24px;
             font-weight: bold;
             cursor: pointer;
             user-select: none;
+            border-radius: 25px;
+            margin: 10px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            transition: transform 0.1s;
         }
 
         .button:active {
-            background-color: #3e8e41;
+            transform: scale(0.97);
+            background-color: #FFC700;
         }
 
     </style>
