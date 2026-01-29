@@ -15,12 +15,13 @@
         }
 
         .top {
+            display: flex;
+            justify-content: space-around;
             padding: 20px;
-            text-align: center;
         }
 
         input {
-            width: 90%;
+            width: 40%;
             padding: 15px;
             font-size: 20px;
             text-align: center;
@@ -56,7 +57,8 @@
 <body>
 
     <div class="top">
-        <input type="text" id="rangeInput" placeholder="bv: 10 tot 50, 1-100, van 5 tot 9">
+        <input type="number" id="min" placeholder="Minimum">
+        <input type="number" id="max" placeholder="Maximum">
     </div>
 
     <div class="number-box" id="number">?</div>
@@ -65,23 +67,15 @@
 
     <script>
         function generateNumber() {
-            const input = document.getElementById('rangeInput').value;
+            const min = parseInt(document.getElementById('min').value);
+            const max = parseInt(document.getElementById('max').value);
 
-            // Haal alle getallen uit de tekst
-            const numbers = input.match(/\d+/g);
-
-            if (numbers && numbers.length >= 2) {
-                const min = parseInt(numbers[0]);
-                const max = parseInt(numbers[1]);
-
-                if (max > min) {
-                    const random = Math.floor(Math.random() * (max - min + 1)) + min;
-                    document.getElementById('number').innerText = random;
-                    return;
-                }
+            if (!isNaN(min) && !isNaN(max) && max > min) {
+                const random = Math.floor(Math.random() * (max - min + 1)) + min;
+                document.getElementById('number').innerText = random;
+            } else {
+                document.getElementById('number').innerText = "!";
             }
-
-            document.getElementById('number').innerText = "!";
         }
     </script>
 
